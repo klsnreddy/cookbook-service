@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cookbook.dao.RecipeDao;
+import com.cookbook.domain.Recipe;
 
 /**
  * @author lokesh
@@ -26,6 +26,9 @@ public class RecipeDaoImplTest {
 
 	@Test
 	public void testCreateRecipe() {
+		Recipe recipe = new Recipe(1, "My Recipe", "This is cntsnts",
+				"vijay akkineni");
+		recipeDao.createRecipe(recipe);
 		Assert.assertEquals(1010, 1010);
 	}
 }
