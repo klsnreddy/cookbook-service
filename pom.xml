@@ -41,6 +41,13 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 
+		<!-- Domain Classes -->
+		<dependency>
+			<groupId>com.cookbook.domain</groupId>
+			<artifactId>cookbook-domain</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Unit Test dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -52,6 +59,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
