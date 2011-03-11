@@ -39,8 +39,7 @@ public class RecipeDaoImpl implements RecipeDao {
 	 */
 	@Override
 	public void createRecipe(Recipe recipe) {
-		// TODO Auto-generated method stub
-
+		entityManager.persist(recipe);
 	}
 
 	/*
@@ -50,8 +49,8 @@ public class RecipeDaoImpl implements RecipeDao {
 	 */
 	@Override
 	public List<Recipe> getAllRecipes() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("Select * from Recipe s").getResultList();
+
 	}
 
 	/*
