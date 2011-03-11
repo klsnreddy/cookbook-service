@@ -1,0 +1,6 @@
+INSERT INTO users VALUES ('vijay', 'password', true);
+INSERT INTO users VALUES ('akhila', 'password', true);
+
+INSERT INTO authorities VALUES ('vijay','ROLE_USER');
+INSERT INTO authorities VALUES ('vijay','ROLE_ADMIN');
+INSERT INTO authorities VALUES ('akhila','ROLE_USER');
