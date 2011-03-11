@@ -39,7 +39,7 @@
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="testH2dataSource" />
 	</bean>
 
 	<bean id="persistenceAnnotation"
