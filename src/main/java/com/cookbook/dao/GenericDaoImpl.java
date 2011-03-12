@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cookbook.domain.DomainObject;
@@ -30,7 +31,7 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 
 	@Override
 	@Transactional(readOnly = true)
-	public T get(Long id) {
+	public T get(Long id) throws DataAccessException {
 		if (id == null) {
 			return null;
 		} else {
@@ -40,18 +41,18 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<T> getAll() {
+	public List<T> getAll() throws DataAccessException {
 		return entityManager.createQuery(
-				"select o from " + type.getName() + " o" ).getResultList();
+				"select o from " + type.getName() + " o").getResultList();
 	}
 
 	@Override
-	public void save(T object) {
+	public void save(T object) throws DataAccessException {
 		entityManager.persist(object);
 	}
 
 	@Override
-	public void delete(T object) {
+	public void delete(T object) throws DataAccessException {
 		entityManager.remove(object);
 	}
 

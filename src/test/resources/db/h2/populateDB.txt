@@ -1,2 +1,2 @@
-INSERT INTO Recipe VALUES (1000,'My Recipe 1', 'Recipe Contents', 'Vijay Akkineni');
-INSERT INTO Recipe VALUES (1001,'My Recipe 2', 'Recipe Contents', 'Vijay Akkineni');
+INSERT INTO Recipe VALUES (1000,'My Recipe 1', 'Recipe Contents', 'Vijay Akkineni',0);
+INSERT INTO Recipe VALUES (1001,'My Recipe 2', 'Recipe Contents', 'Vijay Akkineni',0);

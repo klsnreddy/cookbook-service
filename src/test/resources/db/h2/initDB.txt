@@ -2,5 +2,6 @@ create table Recipe(
 	id bigint not null primary key, 
 	title varchar_ignorecase(50) not null, 
 	contents varchar_ignorecase(50) not null,
-	author varchar_ignorecase(50) not null
+	author varchar_ignorecase(50) not null,
+	version int not null
 	);
