@@ -12,4 +12,7 @@
 
 	<context:component-scan base-package="com.cookbook.dao,com.cookbook.service"></context:component-scan>
 
+	<bean id="exceptionTranslator"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
 </beans>
