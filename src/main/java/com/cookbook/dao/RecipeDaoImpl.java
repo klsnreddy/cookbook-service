@@ -5,12 +5,13 @@ package com.cookbook.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.cookbook.domain.Recipe;
+import com.cookbook.exception.EntityNotfoundException;
 
 /**
  * Implementation of the RecipeDao interface
@@ -18,39 +19,10 @@ import com.cookbook.domain.Recipe;
  * @author lokesh
  */
 @Repository("recipeDao")
-public class RecipeDaoImpl implements RecipeDao {
+public class RecipeDaoImpl extends GenericDaoImpl<Recipe> implements RecipeDao {
 
-	/**
-	 * Constructor for RecipeDao
-	 */
 	public RecipeDaoImpl() {
-		super();
-	}
-
-	/**
-	 * Entity Manager to be injected by Spring ORM
-	 */
-	private EntityManager entityManager;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cookbook.dao.RecipeDao#createRecipe(com.cookbook.domain.Recipe)
-	 */
-	@Override
-	public void createRecipe(Recipe recipe) {
-		entityManager.persist(recipe);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cookbook.dao.RecipeDao#getAllRecipes()
-	 */
-	@Override
-	public List<Recipe> getAllRecipes() {
-		return entityManager.createQuery("Select * from Recipe s").getResultList();
-
+		super(Recipe.class);
 	}
 
 	/*
@@ -59,29 +31,13 @@ public class RecipeDaoImpl implements RecipeDao {
 	 * @see com.cookbook.dao.RecipeDao#getRecipesByAuthor(java.lang.String)
 	 */
 	@Override
-	public List<Recipe> getRecipesByAuthor(String author) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cookbook.dao.RecipeDao#getRecipeById(java.lang.Long)
-	 */
-	@Override
-	public Recipe getRecipeById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @param entityManager
-	 *            the entityManager to set
-	 */
-	@PersistenceContext
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	public List<Recipe> getRecipesByAuthor(String author)
+			throws DataAccessException, EntityNotfoundException {
+		List<Recipe> result = null;
+		Query query = entityManager
+				.createQuery("from Recipe as p where p.author = :author");
+		result = query.getResultList();
+		return result;
 	}
 
 }

@@ -28,11 +28,11 @@ public class RecipeDaoImplTest {
 
 	@Test
 	public void testCreateRecipe() {
-		Recipe recipe = new Recipe(1000, "My Recipe", "This is cntsnts",
-				"vijay akkineni");
-		recipeDao.createRecipe(recipe);
-		List<Recipe> recipes = recipeDao.getAllRecipes();
-		System.out.println(recipes.size());
-		Assert.assertEquals(1010, 1010);
+		// Recipe recipe = new Recipe(1000, "My Recipe", "This is cntsnts",
+		// "vijay akkineni");
+
+		Recipe recipe = recipeDao.get(1000L);
+		List<Recipe> results = recipeDao.getAll();
+		Assert.assertEquals(2, results.size());
 	}
 }

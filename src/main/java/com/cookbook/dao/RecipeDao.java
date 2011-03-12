@@ -6,31 +6,18 @@ package com.cookbook.dao;
 import java.util.List;
 
 import com.cookbook.domain.Recipe;
+import com.cookbook.exception.EntityNotfoundException;
 
 /**
  * @author lokesh
  * 
  */
-public interface RecipeDao {
-	/**
-	 * Method to create recipe
-	 * 
-	 * @param recipe
-	 */
-	void createRecipe(Recipe recipe);
-
-	/**
-	 * Method to retrieve all recipes
-	 */
-	List<Recipe> getAllRecipes();
+public interface RecipeDao extends GenericDao<Recipe> {
 
 	/**
 	 * Method to retrieve recipes by author
 	 */
-	List<Recipe> getRecipesByAuthor(String author);
+	List<Recipe> getRecipesByAuthor(String author)
+			throws EntityNotfoundException;
 
-	/**
-	 * Method to retrieve recipe by id
-	 */
-	Recipe getRecipeById(Long id);
 }
