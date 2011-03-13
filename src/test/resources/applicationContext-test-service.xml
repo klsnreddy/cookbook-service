@@ -10,38 +10,9 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
-	<!-- Spring ORM JPA entity manager factory definition using Hibernate Vendor -->
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="cookbook-domain" />
-		<property name="dataSource" ref="testH2dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="false" />
-				<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
-			</bean>
-		</property>
-	</bean>
-
 	<!-- Configurer that replaces ${...} placeholders with values from jdbc.properties 
 		file -->
 	<context:property-placeholder location="classpath:testjdbc.properties" />
-
-	<!-- DataSource configuration for Test DB -->
-	<bean id="testH2dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
-		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
-
-	<tx:annotation-driven />
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="dataSource" ref="testH2dataSource" />
-	</bean>
-
-	<bean id="persistenceAnnotation"
-		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<!-- Embedded Database -->
 	<jdbc:embedded-database id="CookDB" type="H2">
@@ -49,7 +20,7 @@
 
 	<!-- Database initializer. If any of the script fails, the initialization 
 		stops. -->
-	<jdbc:initialize-database data-source="testH2dataSource">
+	<jdbc:initialize-database data-source="dataSource">
 		<jdbc:script location="${jdbc.initLocation}" />
 		<jdbc:script location="${jdbc.dataLocation}" />
 	</jdbc:initialize-database>

@@ -15,4 +15,33 @@
 	<bean id="exceptionTranslator"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<bean id="persistenceAnnotation"
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Transaction Manager used by Spring ORM -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Spring ORM JPA entity manager factory definition using Hibernate Vendor -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="cookbook-domain" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="false" />
+				<property name="databasePlatform" value="${hibernate.dialect}" />
+			</bean>
+		</property>
+	</bean>
+
 </beans>
