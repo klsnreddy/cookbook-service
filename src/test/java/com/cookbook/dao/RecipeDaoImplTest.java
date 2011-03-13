@@ -5,6 +5,7 @@ package com.cookbook.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +22,9 @@ import com.cookbook.util.SchemaGen;
  * 
  */
 public class RecipeDaoImplTest extends BaseTest {
+
+	private static final Logger logger = Logger
+			.getLogger(RecipeDaoImplTest.class.getName());
 
 	@Autowired
 	private RecipeDao recipeDao;
@@ -49,23 +53,24 @@ public class RecipeDaoImplTest extends BaseTest {
 
 		Author author = new Author();
 		author.setName("Vijay Akkineni");
-		// authorDao.save(author);
 
 		recipe.addAuthorToRecipe(author);
-		//
+
 		// recipeDao.save(recipe);
 		Assert.assertEquals(1, recipeDao.getAll().size());
+		Assert.assertEquals(1, authorDao.getAll().size());
+
+		logger.debug(recipe);
 
 	}
 
 	@Test
-	public void testCreateRecipe() {
-		// Recipe recipe = new Recipe(1000, "My Recipe", "This is cntsnts",
-		// "vijay akkineni");
-
-		Recipe recipe = recipeDao.get(1000L);
+	public void testGetRecipes() {
 		List<Recipe> results = recipeDao.getAll();
 		Assert.assertEquals(1, results.size());
+
+		Recipe recipe = recipeDao.get(1L);
+		Assert.assertEquals(1, recipe.getId());
 	}
 
 }
