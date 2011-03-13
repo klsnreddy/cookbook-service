@@ -16,7 +16,8 @@
 
 	<!-- scans the below mentioned packages for the stereotypes Repository and 
 		Servie -->
-	<context:component-scan base-package="com.cookbook.dao,com.cookbook.service"></context:component-scan>
+	<context:component-scan
+		base-package="com.cookbook.dao,com.cookbook.service,com.cookbook.util"></context:component-scan>
 
 	<!-- Post Processor for Persistence unit -->
 	<bean id="persistenceAnnotation"

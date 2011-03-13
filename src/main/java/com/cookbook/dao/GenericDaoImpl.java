@@ -41,7 +41,7 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<T> getAll() throws DataAccessException {
+	public List<T> getAll() {
 		return entityManager.createQuery(
 				"select o from " + type.getName() + " o").getResultList();
 	}
@@ -49,6 +49,7 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 	@Override
 	public void save(T object) throws DataAccessException {
 		entityManager.persist(object);
+		entityManager.flush();
 	}
 
 	@Override

@@ -1,13 +1,21 @@
-
-create table id_gen (
-    gen_name varchar_ignorecase(80) not null primary key,
-    gen_val int
+create table Author (
+	id bigint not null,
+	name varchar(255), 
+	recipe_id bigint, 
+	primary key (id)
 );
 
-create table Recipe( 
-	id bigint not null primary key, 
-	title varchar_ignorecase(50) not null, 
-	contents varchar_ignorecase(50) not null,
-	author varchar_ignorecase(50) not null,
-	version int not null
-);	
+create table Recipe (
+	id bigint not null, 
+	contents varchar(255), 
+	title varchar(255), 
+	version integer not null, 
+	primary key (id)
+);
+
+alter table Author add constraint FK75920DABE4707594 foreign key (recipe_id) references Recipe;
+
+create table ID_GEN ( 
+	GEN_KEY varchar(255),  
+	GEN_VALUE integer 
+); 
