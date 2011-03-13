@@ -124,8 +124,11 @@
 					<argLine>-Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m</argLine>
 					<parallel>true</parallel>
 					<includes>
-						<include>**/*TestSuite*.java</include>
+						<include>**/*Test.java</include>
 					</includes>
+					<excludes>
+						<exclude>**/BaseTest.java</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
