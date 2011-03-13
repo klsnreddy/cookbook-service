@@ -1,2 +1,5 @@
+INSERT INTO id_gen VALUES ('RECIPE_ID',0);
+INSERT INTO id_gen VALUES ('AUTHOR_ID',0);
+
 INSERT INTO Recipe VALUES (1000,'My Recipe 1', 'Recipe Contents', 'Vijay Akkineni',0);
 INSERT INTO Recipe VALUES (1001,'My Recipe 2', 'Recipe Contents', 'Vijay Akkineni',0);

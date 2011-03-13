@@ -10,21 +10,27 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
-	<!-- Configurer that replaces ${...} placeholders with values from jdbc.properties file -->
+	<!-- Configurer that replaces ${...} placeholders with values from jdbc.properties 
+		file -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
+	<!-- scans the below mentioned packages for the stereotypes Repository and 
+		Servie -->
 	<context:component-scan base-package="com.cookbook.dao,com.cookbook.service"></context:component-scan>
 
-	<bean id="exceptionTranslator"
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
+	<!-- Post Processor for Persistence unit -->
 	<bean id="persistenceAnnotation"
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- Exception Translator to be used for @Repository stereotype -->
+	<bean id="exceptionTranslator"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
 		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
+	<!-- Uses Transactional annotation -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- Transaction Manager used by Spring ORM -->

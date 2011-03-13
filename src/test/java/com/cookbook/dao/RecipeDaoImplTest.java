@@ -19,8 +19,9 @@ import com.cookbook.domain.Recipe;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext-service.xml",
-		"classpath:applicationContext-test-service.xml" })
+@ContextConfiguration(locations = {
+		"classpath:applicationContext-test-service.xml",
+		"classpath:applicationContext-service.xml" })
 public class RecipeDaoImplTest {
 
 	@Autowired
