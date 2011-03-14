@@ -57,18 +57,26 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
+				<!-- General hibernate settings -->
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.connection.autocommit">false</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
+
+				<!-- Hibernate cahce with ehcache settings -->
 				<prop key="hibernate.cache.use_structured_entries">true</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 				<prop key="hibernate.cache.provider_configuration">ehcache.xml</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
+
+				<!-- Hibernate settings for Hibernate Search using lucene -->
+				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<prop key="hibernate.search.default.indexBase">./lucene/indexes</prop>
+				<prop key="hibernate.search.default.batch.merge_factor">10</prop>
+				<prop key="hibernate.search.default.batch.max_buffered_docs">10</prop>
 			</props>
 		</property>
 	</bean>
-
 
 </beans>
