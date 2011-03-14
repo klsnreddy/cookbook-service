@@ -17,6 +17,8 @@ import com.cookbook.domain.Author;
 import com.cookbook.domain.Recipe;
 import com.cookbook.test.BaseTest;
 
+import static org.easymock.EasyMock.*;
+
 /**
  * @author lokesh
  * 
@@ -29,11 +31,15 @@ public class RecipeDaoImplTest extends BaseTest {
 	@Autowired
 	private RecipeDao recipeDao;
 
-	@Autowired
-	private AuthorDao authorDao;
+	private AuthorDao mock;
 
 	@Before
 	public void createRecipe() {
+		
+		//Create mock Object for authorDao interface
+		mock = createMock(AuthorDao.class);
+		
+		
 		Recipe recipe = new Recipe();
 		recipe.setContents("This is my contents");
 		recipe.setTitle("Hello Recipe");
@@ -52,7 +58,7 @@ public class RecipeDaoImplTest extends BaseTest {
 	public void testSaveRecipe() {
 		logger.info("Test Save Recipe ");
 		Assert.assertEquals(1, recipeDao.getAll().size());
-		Assert.assertEquals(1, authorDao.getAll().size());
+		Assert.assertEquals(1, mock.getAll().size());
 
 	}
 
