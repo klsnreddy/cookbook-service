@@ -41,6 +41,7 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 
 	@Override
 	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
 		return entityManager.createQuery(
 				"select o from " + type.getName() + " o").getResultList();

@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cookbook.domain.Author;
 import com.cookbook.domain.Recipe;
 import com.cookbook.test.BaseTest;
-import com.cookbook.util.SchemaGen;
 
 /**
  * @author lokesh
@@ -51,7 +50,7 @@ public class RecipeDaoImplTest extends BaseTest {
 	@Transactional
 	@Rollback(true)
 	public void testSaveRecipe() {
-
+		logger.info("Test Save Recipe ");
 		Assert.assertEquals(1, recipeDao.getAll().size());
 		Assert.assertEquals(1, authorDao.getAll().size());
 

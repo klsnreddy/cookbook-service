@@ -36,8 +36,10 @@ public class SchemaGen {
 		org.hibernate.tool.hbm2ddl.SchemaExport schemaExport = new org.hibernate.tool.hbm2ddl.SchemaExport(
 				configured.getHibernateConfiguration());
 		schemaExport.create(true, false);
+		logger.info("Schema Generation successful !!!");
 		generated = true;
 		return generated;
+
 	}
 
 }

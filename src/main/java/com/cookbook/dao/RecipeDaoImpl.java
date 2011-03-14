@@ -30,6 +30,7 @@ public class RecipeDaoImpl extends GenericDaoImpl<Recipe> implements RecipeDao {
 	 * @see com.cookbook.dao.RecipeDao#getRecipesByAuthor(java.lang.String)
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Recipe> getRecipesByAuthor(String author)
 			throws DataAccessException {
 		List<Recipe> result = null;
