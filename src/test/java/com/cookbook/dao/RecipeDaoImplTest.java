@@ -31,9 +31,6 @@ public class RecipeDaoImplTest extends BaseTest {
 	private RecipeDao recipeDao;
 
 	@Autowired
-	private SchemaGen schGen;
-
-	@Autowired
 	private AuthorDao authorDao;
 
 	@Before
@@ -82,6 +79,10 @@ public class RecipeDaoImplTest extends BaseTest {
 
 		Recipe recipe = recipeDao.get(3L);
 		Assert.assertEquals(3, recipe.getId());
+
+		// Testing for null
+		Recipe recipe2 = recipeDao.get(null);
+		Assert.assertEquals(null, recipe2);
 	}
 
 }

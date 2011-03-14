@@ -31,7 +31,7 @@ public class GenericDaoImpl<T extends DomainObject> implements GenericDao<T> {
 
 	@Override
 	@Transactional(readOnly = true)
-	public T get(Long id) throws DataAccessException {
+	public T get(Long id) {
 		if (id == null) {
 			return null;
 		} else {
